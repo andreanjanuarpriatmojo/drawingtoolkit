@@ -9,8 +9,8 @@ namespace DrawingToolkit.Shape
 {
     public class Rectangle : DrawingObject
     {
-        public int posX { get; set; }
-        public int posY { get; set; }
+        public int rectX { get; set; }
+        public int rectY { get; set; }
         public int rectWidth { get; set; }
         public int rectHeight { get; set; }
 
@@ -23,8 +23,8 @@ namespace DrawingToolkit.Shape
 
         public Rectangle(int initX, int initY) : this()
         {
-            this.posX = initX;
-            this.posY = initY;
+            this.rectX = initX;
+            this.rectY = initY;
         }
 
         public Rectangle(int initX, int initY, int initWidth, int initHeight) : this(initX, initY)
@@ -35,7 +35,7 @@ namespace DrawingToolkit.Shape
 
         public override void Draw()
         {
-            this.graphics.DrawRectangle(pen, posX, posY, rectWidth, rectHeight);
+            this.graphics.DrawRectangle(pen, rectX, rectY, rectWidth, rectHeight);
         }
     }
 }

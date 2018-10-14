@@ -9,10 +9,10 @@ using System.Diagnostics;
 
 namespace DrawingToolkit.Tools
 {
-    public class RectangleTool : ToolStripButton, Tool
+    public class CircleTool : ToolStripButton, Tool
     {
         private DrawingCanvas drawingCanvas;
-        private Rectangle rectangle;
+        private Circle circle;
 
         public Cursor Cursor
         {
@@ -36,17 +36,17 @@ namespace DrawingToolkit.Tools
 
         }
 
-        public RectangleTool()
+        public CircleTool()
         {
-            this.Name = "Rectangle Tool";
-            this.ToolTipText = "Rectangle Tool";
+            this.Name = "Circle Tool";
+            this.ToolTipText = "Circle Tool";
             Debug.WriteLine(this.Name + "is initialized.");
             Init();
         }
 
         public void Init()
         {
-            this.Image = IconSet.rect;
+            this.Image = IconSet.circle;
             this.CheckOnClick = true;
         }
 
@@ -54,15 +54,15 @@ namespace DrawingToolkit.Tools
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.rectangle = new Rectangle(e.X, e.Y);
+                this.circle = new Circle(e.X, e.Y);
             }
         }
 
         public void ToolMouseUp(object sender, MouseEventArgs e)
         {
-           if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
-                drawingCanvas.AddDrawingObject(this.rectangle);
+                drawingCanvas.AddDrawingObject(this.circle);
             }
         }
 
@@ -70,13 +70,13 @@ namespace DrawingToolkit.Tools
         {
             if (e.Button == MouseButtons.Left)
             {
-                int width = e.X - this.rectangle.rectX;
-                int height = e.Y - this.rectangle.rectY;
+                int width = e.X - this.circle.cirX;
+                int height = e.Y - this.circle.cirY;
 
                 if (width > 0 && height > 0)
                 {
-                    this.rectangle.rectWidth = width;
-                    this.rectangle.rectHeight = height;
+                    this.circle.cirWidth = width;
+                    this.circle.cirHeight = height;
                 }
             }
         }
