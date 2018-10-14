@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DrawingToolkit.Shape;
+using System.Diagnostics;
 
 namespace DrawingToolkit.Tools
 {
-    public class LineTool : ToolStripButton, Tool
+    public class RectangleTool : ToolStripButton, Tool
     {
         private DrawingCanvas drawingCanvas;
-        private Line line;
+        private Rectangle rectangle;
 
         public Cursor Cursor
         {
@@ -36,34 +36,49 @@ namespace DrawingToolkit.Tools
 
         }
 
-        public LineTool()
+        public RectangleTool()
         {
-            this.Name = "Line Tool";
-            this.ToolTipText = "Line Tool";
+            this.Name = "Rectangle Tool";
+            this.ToolTipText = "Rectangle Tool";
             Debug.WriteLine(this.Name + "is initialized.");
             Init();
         }
 
         public void Init()
         {
-            this.Image = IconSet.line;
+            this.Image = IconSet.rect;
             this.CheckOnClick = true;
         }
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
-            line = new Line(new System.Drawing.Point(e.X, e.Y));
+            if (e.Button == MouseButtons.Left)
+            {
+                this.rectangle = new Rectangle(e.X, e.Y);
+            }
         }
 
         public void ToolMouseUp(object sender, MouseEventArgs e)
         {
-            line.finishPoint = new System.Drawing.Point(e.X, e.Y);
-            drawingCanvas.AddDrawingObject(line);
+           if (e.Button == MouseButtons.Left)
+            {
+                drawingCanvas.AddDrawingObject(this.rectangle);
+            }
         }
 
         public void ToolMouseMove(object sender, MouseEventArgs e)
         {
-        
+            if (e.Button == MouseButtons.Left)
+            {
+                int width = e.X - this.rectangle.posX;
+                int height = e.Y - this.rectangle.posY;
+
+                if (width > 0 && height > 0)
+                {
+                    this.rectangle.rectWidth = width;
+                    this.rectangle.rectHeight = height;
+                }
+            }
         }
     }
 }

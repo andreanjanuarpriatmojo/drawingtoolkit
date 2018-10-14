@@ -50,6 +50,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DrawingObject.cs" />
+    <Compile Include="Shape\Rectangle.cs" />
     <Compile Include="Toolboxes.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -71,6 +72,9 @@
     <Compile Include="Tool.cs" />
     <Compile Include="Toolbox.cs" />
     <Compile Include="Tools\LineTool.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\RectangleTool.cs">
       <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="DrawingForm.resx">

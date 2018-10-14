@@ -39,6 +39,7 @@ namespace DrawingToolkit
 
             Debug.WriteLine("Loading tools....");
             this.toolbox.AddTool(new LineTool());
+            this.toolbox.AddTool(new RectangleTool());
             this.toolbox.ToolSelected += Toolbox_ToolSelected;
 
             #endregion
