@@ -81,6 +81,9 @@
     <Compile Include="Tools\RectangleTool.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Tools\SelectTool.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="DrawingForm.resx">
       <DependentUpon>DrawingForm.cs</DependentUpon>
     </EmbeddedResource>

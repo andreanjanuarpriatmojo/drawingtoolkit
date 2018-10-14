@@ -38,6 +38,7 @@ namespace DrawingToolkit
             #region Tools
 
             Debug.WriteLine("Loading tools....");
+            this.toolbox.AddTool(new SelectTool());
             this.toolbox.AddTool(new LineTool());
             this.toolbox.AddTool(new RectangleTool());
             this.toolbox.AddTool(new CircleTool());
