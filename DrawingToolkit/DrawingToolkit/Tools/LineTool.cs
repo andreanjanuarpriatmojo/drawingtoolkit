@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using DrawingToolkit.Shape;
 
 namespace DrawingToolkit.Tools
@@ -40,12 +34,6 @@ namespace DrawingToolkit.Tools
         {
             this.Name = "Line Tool";
             this.ToolTipText = "Line Tool";
-            Debug.WriteLine(this.Name + "is initialized.");
-            Init();
-        }
-
-        public void Init()
-        {
             this.Image = IconSet.line;
             this.CheckOnClick = true;
         }
@@ -55,15 +43,15 @@ namespace DrawingToolkit.Tools
             line = new Line(new System.Drawing.Point(e.X, e.Y));
         }
 
+        public void ToolMouseMove(object sender, MouseEventArgs e)
+        {
+        
+        }
+
         public void ToolMouseUp(object sender, MouseEventArgs e)
         {
             line.finishPoint = new System.Drawing.Point(e.X, e.Y);
             drawingCanvas.AddDrawingObject(line);
-        }
-
-        public void ToolMouseMove(object sender, MouseEventArgs e)
-        {
-        
         }
     }
 }

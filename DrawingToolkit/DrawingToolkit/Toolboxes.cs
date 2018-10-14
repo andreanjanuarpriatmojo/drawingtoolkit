@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace DrawingToolkit
@@ -22,7 +21,6 @@ namespace DrawingToolkit
 
         public void AddTool(Tool tool)
         {
-            Debug.WriteLine(tool.Name + " is added into toolbox.");
 
             if (tool is ToolStripButton)
             {
@@ -62,7 +60,6 @@ namespace DrawingToolkit
                     if (button is Tool)
                     {
                         this.activeTool = (Tool)button;
-                        Debug.WriteLine(this.activeTool.Name + " is activated.");
 
                         if (ToolSelected != null)
                         {

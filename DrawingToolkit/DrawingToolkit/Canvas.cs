@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Diagnostics;
@@ -16,11 +12,6 @@ namespace DrawingToolkit
 
         public Canvas()
         {
-            Init();
-        }
-
-        private void Init()
-        {
             this.drawingObjects = new List<DrawingObject>();
             this.DoubleBuffered = true;
             this.BackColor = Color.White;
@@ -30,7 +21,6 @@ namespace DrawingToolkit
             this.MouseDown += Canvas_MouseDown;
             this.MouseMove += Canvas_MouseMove;
             this.MouseUp += Canvas_MouseUp;
-
         }
 
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
@@ -86,7 +76,6 @@ namespace DrawingToolkit
         {
             this.drawingObjects.Add(drawingObject);
             this.Repaint();
-            Debug.WriteLine("New drawing object");
         }
     }
 }

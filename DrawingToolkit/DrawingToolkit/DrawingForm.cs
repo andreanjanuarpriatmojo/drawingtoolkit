@@ -1,5 +1,4 @@
 ﻿using DrawingToolkit.Tools;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace DrawingToolkit
@@ -12,16 +11,9 @@ namespace DrawingToolkit
         public DrawingForm()
         {
             InitializeComponent();
-            InitForm();
-        }
-
-        private void InitForm()
-        {
-            Debug.WriteLine("Initializing UI Objects.");
-
+           
             #region Canvas
 
-            Debug.WriteLine("Loading canvas....");
             this.canvas = new Canvas();
             this.toolStripContainer1.ContentPanel.Controls.Add((Control)this.canvas);
 
@@ -29,7 +21,6 @@ namespace DrawingToolkit
 
             #region Toolbox
 
-            Debug.WriteLine("Loading toolbox....");
             this.toolbox = new Toolboxes();
             this.toolStripContainer1.LeftToolStripPanel.Controls.Add((Control)this.toolbox);
 
@@ -37,7 +28,6 @@ namespace DrawingToolkit
 
             #region Tools
 
-            Debug.WriteLine("Loading tools....");
             this.toolbox.AddTool(new SelectTool());
             this.toolbox.AddTool(new LineTool());
             this.toolbox.AddTool(new RectangleTool());

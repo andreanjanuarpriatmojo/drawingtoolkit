@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using DrawingToolkit.Shape;
 using System.Diagnostics;
 
@@ -41,11 +36,6 @@ namespace DrawingToolkit.Tools
             this.Name = "Rectangle Tool";
             this.ToolTipText = "Rectangle Tool";
             Debug.WriteLine(this.Name + "is initialized.");
-            Init();
-        }
-
-        public void Init()
-        {
             this.Image = IconSet.rect;
             this.CheckOnClick = true;
         }
@@ -55,14 +45,6 @@ namespace DrawingToolkit.Tools
             if (e.Button == MouseButtons.Left)
             {
                 this.rectangle = new Rectangle(e.X, e.Y);
-            }
-        }
-
-        public void ToolMouseUp(object sender, MouseEventArgs e)
-        {
-           if (e.Button == MouseButtons.Left)
-            {
-                drawingCanvas.AddDrawingObject(this.rectangle);
             }
         }
 
@@ -78,6 +60,14 @@ namespace DrawingToolkit.Tools
                     this.rectangle.rectWidth = width;
                     this.rectangle.rectHeight = height;
                 }
+            }
+        }
+
+        public void ToolMouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                drawingCanvas.AddDrawingObject(this.rectangle);
             }
         }
     }

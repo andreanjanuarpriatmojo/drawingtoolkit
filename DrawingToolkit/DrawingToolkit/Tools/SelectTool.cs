@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Diagnostics;
+﻿using System.Windows.Forms;
 
 namespace DrawingToolkit.Tools
 {
@@ -38,12 +32,6 @@ namespace DrawingToolkit.Tools
         {
             this.Name = "Select Tool";
             this.ToolTipText = "Select Tool";
-            Debug.WriteLine(this.Name + "is initialized.");
-            Init();
-        }
-
-        public void Init()
-        {
             this.Image = IconSet.cursor;
             this.CheckOnClick = true;
         }
