@@ -22,7 +22,7 @@ namespace DrawingToolkit
             #region Canvas
 
             Debug.WriteLine("Loading canvas....");
-            this.canvas = new DefaultCanvas();
+            this.canvas = new Canvas();
             this.toolStripContainer1.ContentPanel.Controls.Add((Control)this.canvas);
 
             #endregion
@@ -30,7 +30,7 @@ namespace DrawingToolkit
             #region Toolbox
 
             Debug.WriteLine("Loading toolbox....");
-            this.toolbox = new DefaultToolbox();
+            this.toolbox = new Toolboxes();
             this.toolStripContainer1.LeftToolStripPanel.Controls.Add((Control)this.toolbox);
 
             #endregion

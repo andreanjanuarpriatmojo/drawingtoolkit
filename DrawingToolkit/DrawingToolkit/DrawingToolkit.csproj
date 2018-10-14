@@ -46,10 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultCanvas.cs">
+    <Compile Include="Canvas.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DefaultToolbox.cs">
+    <Compile Include="DrawingObject.cs" />
+    <Compile Include="Toolboxes.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DrawingCanvas.cs" />

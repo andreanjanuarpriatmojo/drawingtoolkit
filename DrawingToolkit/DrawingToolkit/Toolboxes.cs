@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace DrawingToolkit
 {
-    public class DefaultToolbox : ToolStrip, Toolbox
+    public class Toolboxes : ToolStrip, Toolbox
     {
         private Tool activeTool;
 
@@ -17,6 +17,8 @@ namespace DrawingToolkit
         }
 
         public event ToolSelectedEventHandler ToolSelected;
+
+
 
         public void AddTool(Tool tool)
         {

@@ -5,18 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DrawingToolkit.Shape;
 
 namespace DrawingToolkit.Tools
 {
     public class LineTool : ToolStripButton, Tool
     {
         private DrawingCanvas canvas;
+        private Line line;
 
         public Cursor Cursor
         {
             get
             {
-                return Cursors.Cross;
+                return Cursors.Arrow;
             }
         }
 
@@ -50,12 +52,13 @@ namespace DrawingToolkit.Tools
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
-            MessageBox.Show("Tool Line clicked", "Tool Line");
+            line = new Line(new System.Drawing.Point(e.X, e.Y));
         }
 
         public void ToolMouseUp(object sender, MouseEventArgs e)
         {
-
+            line.finishPoint = new System.Drawing.Point(e.X, e.Y);
+            canvas.AddDrawingObject(line);
         }
 
         public void ToolMouseMove(object sender, MouseEventArgs e)
