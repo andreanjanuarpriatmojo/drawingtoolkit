@@ -77,5 +77,13 @@ namespace DrawingToolkit
             this.drawingObjects.Add(drawingObject);
             this.Repaint();
         }
+
+        public void SelectObject(object sender, MouseEventArgs e)
+        {
+            foreach(DrawingObject dobject in drawingObjects)
+            {
+
+            }
+        }
     }
 }
