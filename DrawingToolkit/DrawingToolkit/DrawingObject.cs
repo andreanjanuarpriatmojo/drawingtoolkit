@@ -14,5 +14,8 @@ namespace DrawingToolkit
         }
 
         public abstract void Draw();
+
+        public abstract Boolean Selected(Point point);
+        public abstract void Idle();
     }
 }

@@ -32,5 +32,15 @@ namespace DrawingToolkit.Shape
         {
             this.graphics.DrawRectangle(pen, rectX, rectY, rectWidth, rectHeight);
         }
+
+        public override bool Selected(Point point)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Idle()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

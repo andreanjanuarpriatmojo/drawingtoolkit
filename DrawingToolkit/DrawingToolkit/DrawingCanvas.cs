@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace DrawingToolkit
 {
@@ -8,5 +9,7 @@ namespace DrawingToolkit
         void Repaint();
         void SetBackgroundColor(Color color);
         void AddDrawingObject(DrawingObject drawingObject);
+        //void SelectObject(DrawingObject drawingObject);
+        List<DrawingObject> GetObject();
     }
 }

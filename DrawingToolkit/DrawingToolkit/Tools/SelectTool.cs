@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace DrawingToolkit.Tools
 {
@@ -38,7 +39,22 @@ namespace DrawingToolkit.Tools
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
-
+            List<DrawingObject> temp = this.drawingCanvas.GetObject();
+            foreach (DrawingObject dobject in temp)
+            {
+               
+                    if (dobject.Selected(e.Location))
+                    {
+                       
+                        this.drawingCanvas.Repaint();
+                    }
+                    else
+                    {
+                        dobject.Idle();
+                        this.drawingCanvas.Repaint();
+                }
+                
+            }
         }
 
         public void ToolMouseMove(object sender, MouseEventArgs e)
