@@ -13,6 +13,10 @@ namespace DrawingToolkit
             {
                 return this.activeTool;
             }
+            set
+            {
+                this.activeTool = value;
+            }
         }
 
         public event ToolSelectedEventHandler ToolSelected;

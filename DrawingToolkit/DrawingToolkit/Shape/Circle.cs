@@ -28,9 +28,29 @@ namespace DrawingToolkit.Shape
             this.cirHeight = initHeight;
         }
 
-        public override void Draw()
+        public override void RenderIdle()
         {
-            this.graphics.DrawEllipse(pen, cirX, cirY, cirWidth, cirHeight);
+            pen.Color = Color.Black;
+
+            if (this.graphics != null)
+            {
+                this.graphics.DrawEllipse(pen, cirX, cirY, cirWidth, cirHeight);
+            }
+        }
+
+        public override void RenderSelected()
+        {
+            pen.Color = Color.Blue;
+
+            if (this.graphics != null)
+            {
+                this.graphics.DrawEllipse(pen, cirX, cirY, cirWidth, cirHeight);
+            }
+        }
+
+        public override bool HitArea(int areaX, int areaY)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

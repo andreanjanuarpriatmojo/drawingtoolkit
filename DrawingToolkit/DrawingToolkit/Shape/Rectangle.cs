@@ -28,9 +28,30 @@ namespace DrawingToolkit.Shape
             this.rectWidth = initWidth;
         }
 
-        public override void Draw()
+        public override void RenderIdle()
         {
-            this.graphics.DrawRectangle(pen, rectX, rectY, rectWidth, rectHeight);
+            pen.Color = Color.Black;
+
+            if (this.graphics != null)
+            {
+                this.graphics.DrawRectangle(pen, rectX, rectY, rectWidth, rectHeight);
+            }
         }
+
+        public override void RenderSelected()
+        {
+            pen.Color = Color.Blue;
+
+            if (this.graphics != null)
+            {
+                this.graphics.DrawRectangle(pen, rectX, rectY, rectWidth, rectHeight);
+            }
+        }
+
+        public override bool HitArea(int areaX, int areaY)
+        {
+            throw new System.NotImplementedException();
+        }
+
     }
 }

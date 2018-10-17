@@ -12,7 +12,6 @@ D:\kuliah\KPL\Drawing Toolkit\DrawingToolkit\DrawingToolkit\obj\Debug\DrawingToo
 D:\kuliah\KPL\kpl2018\DrawingToolkit\DrawingToolkit\bin\Debug\DrawingToolkit.exe.config
 D:\kuliah\KPL\kpl2018\DrawingToolkit\DrawingToolkit\bin\Debug\DrawingToolkit.exe
 D:\kuliah\KPL\kpl2018\DrawingToolkit\DrawingToolkit\bin\Debug\DrawingToolkit.pdb
-D:\kuliah\KPL\kpl2018\DrawingToolkit\DrawingToolkit\obj\Debug\DrawingToolkit.csprojAssemblyReference.cache
 D:\kuliah\KPL\kpl2018\DrawingToolkit\DrawingToolkit\obj\Debug\DrawingToolkit.DrawingForm.resources
 D:\kuliah\KPL\kpl2018\DrawingToolkit\DrawingToolkit\obj\Debug\DrawingToolkit.IconSet.resources
 D:\kuliah\KPL\kpl2018\DrawingToolkit\DrawingToolkit\obj\Debug\DrawingToolkit.Properties.Resources.resources
@@ -20,3 +19,4 @@ D:\kuliah\KPL\kpl2018\DrawingToolkit\DrawingToolkit\obj\Debug\DrawingToolkit.csp
 D:\kuliah\KPL\kpl2018\DrawingToolkit\DrawingToolkit\obj\Debug\DrawingToolkit.csproj.CoreCompileInputs.cache
 D:\kuliah\KPL\kpl2018\DrawingToolkit\DrawingToolkit\obj\Debug\DrawingToolkit.exe
 D:\kuliah\KPL\kpl2018\DrawingToolkit\DrawingToolkit\obj\Debug\DrawingToolkit.pdb
+D:\kuliah\KPL\kpl2018\DrawingToolkit\DrawingToolkit\obj\Debug\DrawingToolkit.csprojAssemblyReference.cache

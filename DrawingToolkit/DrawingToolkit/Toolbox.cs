@@ -7,6 +7,6 @@
         event ToolSelectedEventHandler ToolSelected;
         void AddTool(Tool tool);
         void RemoveTool(Tool tool);
-        Tool ActiveTool { get; }
+        Tool ActiveTool { get; set; }
     }
 }

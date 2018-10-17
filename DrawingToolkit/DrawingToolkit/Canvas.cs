@@ -8,7 +8,7 @@ namespace DrawingToolkit
     public class Canvas : Control, DrawingCanvas
     {
         private Tool activeTool;
-        private List<DrawingObject> drawingObjects; 
+        private List<DrawingObject> drawingObjects;
 
         public Canvas()
         {
@@ -28,6 +28,7 @@ namespace DrawingToolkit
             if (this.activeTool != null)
             {
                 this.activeTool.ToolMouseDown(sender, e);
+                this.Repaint();
             }
         }
 
@@ -36,6 +37,7 @@ namespace DrawingToolkit
             if (this.activeTool != null)
             {
                 this.activeTool.ToolMouseMove(sender, e);
+                this.Repaint();
             }
         }
 
@@ -44,6 +46,7 @@ namespace DrawingToolkit
             if (this.activeTool != null)
             {
                 this.activeTool.ToolMouseUp(sender, e);
+                this.Repaint();
             }
         }
 
@@ -67,6 +70,11 @@ namespace DrawingToolkit
             this.activeTool = tool;
         }
 
+        public Tool GetActiveTool()
+        {
+            return this.activeTool;
+        }
+
         public void SetBackgroundColor(Color color)
         {
             this.BackColor = color;
@@ -75,14 +83,35 @@ namespace DrawingToolkit
         public void AddDrawingObject(DrawingObject drawingObject)
         {
             this.drawingObjects.Add(drawingObject);
-            this.Repaint();
         }
 
-        public void SelectObject(object sender, MouseEventArgs e)
+        public DrawingObject GetObject(int x, int y)
         {
-            foreach(DrawingObject dobject in drawingObjects)
+            foreach (DrawingObject dobject in drawingObjects)
             {
+                if (dobject.HitArea(x, y))
+                {
+                    return dobject;
+                }
+            }
+            return null;
+        }
 
+        public DrawingObject SelectObject(int x, int y)
+        {
+            DrawingObject dobject = GetObject(x, y);
+            if (dobject != null)
+            {
+                dobject.Select();
+            }
+            return dobject;
+        }
+
+        public void DeselectObject()
+        {
+            foreach (DrawingObject dobject in drawingObjects)
+            {
+                dobject.Deselect();
             }
         }
     }

@@ -52,6 +52,7 @@ namespace DrawingToolkit.Tools
         {
             line.finishPoint = new System.Drawing.Point(e.X, e.Y);
             drawingCanvas.AddDrawingObject(line);
+            line.Select();
         }
     }
 }
