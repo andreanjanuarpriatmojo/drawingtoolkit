@@ -78,24 +78,6 @@ namespace DrawingToolkit
             this.Repaint();
         }
 
-        public void SelectObject(object sender, MouseEventArgs e)
-        {
-            int i = 0;
-            foreach (DrawingObject dobject in drawingObjects)
-            {
-                if (dobject.Selected(e.Location))
-                {
-                    this.Refresh();
-                }
-                else
-                {
-                    dobject.Idle();
-                    this.Refresh();
-                }
-                i++;
-            }
-        }
-
         public List<DrawingObject> GetObject()
         {
             return drawingObjects;

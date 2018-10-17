@@ -40,7 +40,7 @@ namespace DrawingToolkit.Shape
 
         public override void Idle()
         {
-            throw new System.NotImplementedException();
+            pen.Color = Color.Black;
         }
     }
 }

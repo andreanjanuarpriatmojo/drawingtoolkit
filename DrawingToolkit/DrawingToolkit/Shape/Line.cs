@@ -38,7 +38,7 @@ namespace DrawingToolkit.Shape
 
             if (Math.Abs(point.Y - c) < EPSILON)
             {
-                pen.Color = Color.Red;
+                pen.Color = Color.Blue;
                 return true;
             }
             return false;

@@ -35,12 +35,17 @@ namespace DrawingToolkit.Shape
 
         public override bool Selected(Point point)
         {
-            throw new System.NotImplementedException();
+            if ((point.X >= rectX && point.X <= rectX + rectWidth) && (point.Y >= rectY && point.Y <= rectY + rectHeight))
+            {
+                pen.Color = Color.Blue;
+                return true;
+            }
+            return false;
         }
 
         public override void Idle()
         {
-            throw new System.NotImplementedException();
+            pen.Color = Color.Black;
         }
     }
 }
