@@ -38,10 +38,7 @@ namespace DrawingToolkit.Tools
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && drawingCanvas != null)
-            {
-                drawingCanvas.SelectObject(e.X, e.Y);
-            }
+
         }
 
         public void ToolMouseMove(object sender, MouseEventArgs e)

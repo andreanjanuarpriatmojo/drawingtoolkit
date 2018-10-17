@@ -45,14 +45,13 @@ namespace DrawingToolkit.Tools
 
         public void ToolMouseMove(object sender, MouseEventArgs e)
         {
-        
+
         }
 
         public void ToolMouseUp(object sender, MouseEventArgs e)
         {
             line.finishPoint = new System.Drawing.Point(e.X, e.Y);
             drawingCanvas.AddDrawingObject(line);
-            line.Select();
         }
     }
 }

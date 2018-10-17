@@ -65,7 +65,7 @@ namespace DrawingToolkit.Tools
                     width = this.rectangle.rectX - e.X;
                     height = this.rectangle.rectY - e.Y;
                 }
-                
+
 
                 if (width > 0 && height > 0)
                 {
