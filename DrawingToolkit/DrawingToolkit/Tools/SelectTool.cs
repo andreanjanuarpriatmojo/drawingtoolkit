@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace DrawingToolkit.Tools
 {
     public class SelectTool : ToolStripButton, Tool
     {
         private DrawingCanvas drawingCanvas;
+        private Point point;
+        private DrawingObject currentObject;
 
         public Cursor Cursor
         {
@@ -45,26 +48,34 @@ namespace DrawingToolkit.Tools
                
                     if (dobject.Selected(e.Location))
                     {
-                       
+                        point = e.Location;
+                        currentObject = dobject;
                         this.drawingCanvas.Repaint();
                     }
                     else
                     {
                         dobject.Idle();
                         this.drawingCanvas.Repaint();
-                }
+                    }
                 
             }
         }
 
         public void ToolMouseMove(object sender, MouseEventArgs e)
         {
-
+            if (e.Button == MouseButtons.Left)
+            {
+                int xMove = e.X - point.X;
+                int yMove = e.Y - point.Y;
+                point = e.Location;
+                currentObject.Move(e, xMove, yMove);
+                this.drawingCanvas.Repaint();
+            }
         }
 
         public void ToolMouseUp(object sender, MouseEventArgs e)
         {
-
+            
         }
     }
 }

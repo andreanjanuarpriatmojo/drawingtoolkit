@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace DrawingToolkit
 {
@@ -17,5 +18,7 @@ namespace DrawingToolkit
 
         public abstract Boolean Selected(Point point);
         public abstract void Idle();
+        public abstract void Move(MouseEventArgs e, int x, int y);
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace DrawingToolkit.Shape
 {
@@ -47,6 +48,13 @@ namespace DrawingToolkit.Shape
         public override void Idle()
         {
             pen.Color = Color.Black;
+        }
+
+        public override void Move(MouseEventArgs e, int x, int y)
+        {
+            Point point = e.Location;
+            startPoint = new Point((startPoint.X + x), (startPoint.Y + y));
+            finishPoint = new Point((finishPoint.X + x), (finishPoint.Y + y));
         }
     }
 }
