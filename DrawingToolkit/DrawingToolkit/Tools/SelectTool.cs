@@ -7,8 +7,10 @@ namespace DrawingToolkit.Tools
     public class SelectTool : ToolStripButton, Tool
     {
         private DrawingCanvas drawingCanvas;
-        private Point point;
         private DrawingObject currentObject;
+
+        private int x;
+        private int y;
 
         public Cursor Cursor
         {
@@ -42,22 +44,13 @@ namespace DrawingToolkit.Tools
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
-            List<DrawingObject> temp = this.drawingCanvas.GetObject();
-            foreach (DrawingObject dobject in temp)
+            this.x = e.X;
+            this.y = e.Y;
+
+            if (e.Button == MouseButtons.Left)
             {
-               
-                    if (dobject.Selected(e.Location))
-                    {
-                        point = e.Location;
-                        currentObject = dobject;
-                        this.drawingCanvas.Repaint();
-                    }
-                    else
-                    {
-                        dobject.Idle();
-                        this.drawingCanvas.Repaint();
-                    }
-                
+                drawingCanvas.DeselectAll();
+                currentObject = drawingCanvas.SelectObject(e.X, e.Y);
             }
         }
 
@@ -65,11 +58,11 @@ namespace DrawingToolkit.Tools
         {
             if (e.Button == MouseButtons.Left)
             {
-                int xMove = e.X - point.X;
-                int yMove = e.Y - point.Y;
-                point = e.Location;
-                currentObject.Move(e, xMove, yMove);
-                this.drawingCanvas.Repaint();
+                int xMove = e.X - x;
+                int yMove = e.Y - y;
+                x = e.X;
+                y = e.Y;
+                currentObject.Move(e.X, e.Y, xMove, yMove);
             }
         }
 

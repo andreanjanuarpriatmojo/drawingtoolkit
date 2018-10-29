@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using System.Drawing;
 using DrawingToolkit.Shape;
 
 namespace DrawingToolkit.Tools
@@ -40,18 +41,30 @@ namespace DrawingToolkit.Tools
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
-            line = new Line(new System.Drawing.Point(e.X, e.Y));
+            if (e.Button == MouseButtons.Left)
+            {
+                line = new Line(new Point(e.X, e.Y));
+                line.finishPoint = new Point(e.X, e.Y);
+                drawingCanvas.AddDrawingObject(line);
+            }
         }
 
         public void ToolMouseMove(object sender, MouseEventArgs e)
         {
+            if (e.Button == MouseButtons.Left)
+            {
+                line.finishPoint = new Point(e.X, e.Y);
+            }
 
         }
 
         public void ToolMouseUp(object sender, MouseEventArgs e)
         {
-            line.finishPoint = new System.Drawing.Point(e.X, e.Y);
-            drawingCanvas.AddDrawingObject(line);
+            if (e.Button == MouseButtons.Left)
+            {
+                line.finishPoint = new Point(e.X, e.Y);
+                line.Selected();
+            }
         }
     }
 }

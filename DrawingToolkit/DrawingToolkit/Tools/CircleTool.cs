@@ -43,6 +43,7 @@ namespace DrawingToolkit.Tools
             if (e.Button == MouseButtons.Left)
             {
                 this.circle = new Circle(e.X, e.Y);
+                this.drawingCanvas.AddDrawingObject(this.circle);
             }
         }
 
@@ -50,19 +51,8 @@ namespace DrawingToolkit.Tools
         {
             if (e.Button == MouseButtons.Left)
             {
-                int width = 0;
-                int height = 0;
-
-                if (e.X > this.circle.cirX)
-                {
-                    width = e.X - this.circle.cirX;
-                    height = e.Y - this.circle.cirY;
-                }
-                else
-                {
-                    width = this.circle.cirX - e.X;
-                    height = this.circle.cirY - e.Y;
-                }
+                int width = e.X - this.circle.cirX;
+                int height = e.Y - this.circle.cirY;
 
                 if (width > 0 && height > 0)
                 {
@@ -76,12 +66,7 @@ namespace DrawingToolkit.Tools
         {
             if (e.Button == MouseButtons.Left)
             {
-                if (e.X <= this.circle.cirX)
-                {
-                    this.circle.cirX = e.X;
-                    this.circle.cirY = e.Y;
-                }
-                drawingCanvas.AddDrawingObject(this.circle);
+                this.circle.Selected();
             }
         }
     }

@@ -28,6 +28,7 @@ namespace DrawingToolkit
             if (this.activeTool != null)
             {
                 this.activeTool.ToolMouseDown(sender, e);
+                this.Repaint();
             }
         }
 
@@ -36,6 +37,7 @@ namespace DrawingToolkit
             if (this.activeTool != null)
             {
                 this.activeTool.ToolMouseMove(sender, e);
+                this.Repaint();
             }
         }
 
@@ -44,6 +46,7 @@ namespace DrawingToolkit
             if (this.activeTool != null)
             {
                 this.activeTool.ToolMouseUp(sender, e);
+                this.Repaint();
             }
         }
 
@@ -75,12 +78,36 @@ namespace DrawingToolkit
         public void AddDrawingObject(DrawingObject drawingObject)
         {
             this.drawingObjects.Add(drawingObject);
-            this.Repaint();
         }
 
-        public List<DrawingObject> GetObject()
+        public DrawingObject GetObject(int x, int y)
         {
-            return drawingObjects;
+            foreach (DrawingObject dobject in drawingObjects)
+            {
+                if (dobject.HitArea(x,y))
+                {
+                    return dobject;
+                }
+            }
+            return null;
+        }
+
+        public DrawingObject SelectObject(int x, int y)
+        {
+            DrawingObject dobject = GetObject(x, y);
+            if (dobject != null)
+            {
+                dobject.Selected();
+            }
+            return dobject;
+        }
+
+        public void DeselectAll()
+        {
+            foreach (DrawingObject dobject in drawingObjects)
+            {
+                dobject.Deselected();
+            }
         }
     }
 }

@@ -9,6 +9,9 @@ namespace DrawingToolkit
         void Repaint();
         void SetBackgroundColor(Color color);
         void AddDrawingObject(DrawingObject drawingObject);
-        List<DrawingObject> GetObject();
+
+        DrawingObject GetObject(int x, int y);
+        DrawingObject SelectObject(int x, int y);
+        void DeselectAll();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace DrawingToolkit.Shape
@@ -26,35 +27,44 @@ namespace DrawingToolkit.Shape
             this.finishPoint = initY;
         }
 
-        public override void Draw()
+        public override void DrawEdit()
         {
-            this.graphics.DrawLine(this.pen, startPoint, finishPoint);
+            pen.Color = Color.Blue;
+            pen.DashStyle = DashStyle.Solid;
+            this.graphics.DrawLine(pen, this.startPoint, this.finishPoint);
         }
 
-        public override bool Selected(Point point)
+        public override void DrawIdle()
+        {
+            pen.Color = Color.Black;
+            pen.DashStyle = DashStyle.Solid;
+            this.graphics.DrawLine(pen, this.startPoint, this.finishPoint);
+        }
+
+        public override void DrawPreview()
+        {
+            pen.Color = Color.Blue;
+            pen.DashStyle = DashStyle.DashDotDot;
+            this.graphics.DrawLine(pen, this.startPoint, this.finishPoint);
+        }
+
+        public override bool HitArea(int x, int y)
         {
             double a = (double)(finishPoint.Y - startPoint.Y) / (double)(finishPoint.X - startPoint.X);
             double b = finishPoint.Y - a * finishPoint.X;
-            double c = a * point.X + b;
+            double c = a * x + b;
 
-            if (Math.Abs(point.Y - c) < EPSILON)
+            if (Math.Abs(y - c) < EPSILON)
             {
-                pen.Color = Color.Blue;
                 return true;
             }
             return false;
         }
 
-        public override void Idle()
+        public override void Move(int x, int y, int xMove, int yMove)
         {
-            pen.Color = Color.Black;
-        }
-
-        public override void Move(MouseEventArgs e, int x, int y)
-        {
-            Point point = e.Location;
-            startPoint = new Point((startPoint.X + x), (startPoint.Y + y));
-            finishPoint = new Point((finishPoint.X + x), (finishPoint.Y + y));
+            this.startPoint = new Point(this.startPoint.X + xMove, this.startPoint.Y + yMove);
+            this.finishPoint = new Point(this.finishPoint.X + xMove, this.finishPoint.Y + yMove);
         }
     }
 }

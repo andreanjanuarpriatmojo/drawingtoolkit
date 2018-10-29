@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace DrawingToolkit.Shape
@@ -11,8 +12,6 @@ namespace DrawingToolkit.Shape
         public int rectHeight { get; set; }
 
         private Pen pen;
-        private Point startPoint { get; set; }
-        private Point finishPoint { get; set; }
 
         public Rectangle()
         {
@@ -31,31 +30,40 @@ namespace DrawingToolkit.Shape
             this.rectWidth = initWidth;
         }
 
-        public override void Draw()
+        public override void DrawEdit()
         {
-            this.graphics.DrawRectangle(pen, rectX, rectY, rectWidth, rectHeight);
+            pen.Color = Color.Blue;
+            pen.DashStyle = DashStyle.Solid;
+            this.graphics.DrawRectangle(this.pen, rectX, rectY, rectWidth, rectHeight);
         }
 
-        public override bool Selected(Point point)
+        public override void DrawIdle()
         {
-            if ((point.X >= rectX && point.X <= rectX + rectWidth) && (point.Y >= rectY && point.Y <= rectY + rectHeight))
+            pen.Color = Color.Black;
+            pen.DashStyle = DashStyle.Solid;
+            this.graphics.DrawRectangle(this.pen, rectX, rectY, rectWidth, rectHeight);
+        }
+
+        public override void DrawPreview()
+        {
+            pen.Color = Color.Blue;
+            pen.DashStyle = DashStyle.DashDotDot;
+            this.graphics.DrawRectangle(this.pen, rectX, rectY, rectWidth, rectHeight);
+        }
+
+        public override bool HitArea(int x, int y)
+        {
+            if ((x >= rectX && x <= rectX + rectWidth) && (y >=  rectY && y <= rectY + rectHeight))
             {
-                pen.Color = Color.Blue;
                 return true;
             }
             return false;
         }
 
-        public override void Idle()
+        public override void Move(int x, int y, int xMove, int yMove)
         {
-            pen.Color = Color.Black;
-        }
-
-        public override void Move(MouseEventArgs e, int x, int y)
-        {
-            Point point = e.Location;
-            rectX += x;
-            rectY += y;
+            this.rectX += xMove;
+            this.rectY += yMove;
         }
     }
 }

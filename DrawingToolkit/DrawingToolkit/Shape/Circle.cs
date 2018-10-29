@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace DrawingToolkit.Shape
@@ -11,8 +12,6 @@ namespace DrawingToolkit.Shape
         public int cirHeight { get; set; }
 
         private Pen pen;
-        private Point startPoint { get; set; }
-        private Point finishPoint { get; set; }
 
         public Circle()
         {
@@ -31,31 +30,40 @@ namespace DrawingToolkit.Shape
             this.cirHeight = initHeight;
         }
 
-        public override void Draw()
+        public override void DrawEdit()
         {
-            this.graphics.DrawEllipse(pen, cirX, cirY, cirWidth, cirHeight);
+            pen.Color = Color.Blue;
+            pen.DashStyle = DashStyle.Solid;
+            this.graphics.DrawEllipse(this.pen, cirX, cirY, cirWidth, cirHeight);
         }
 
-        public override bool Selected(Point point)
+        public override void DrawIdle()
         {
-            if ((point.X >= cirX && point.X <= cirX + cirWidth) && (point.Y >= cirY && point.Y <= cirY + cirHeight))
+            pen.Color = Color.Black;
+            pen.DashStyle = DashStyle.Solid;
+            this.graphics.DrawEllipse(this.pen, cirX, cirY, cirWidth, cirHeight);
+        }
+
+        public override void DrawPreview()
+        {
+            pen.Color = Color.Blue;
+            pen.DashStyle = DashStyle.DashDotDot;
+            this.graphics.DrawEllipse(this.pen, cirX, cirY, cirWidth, cirHeight);
+        }
+
+        public override bool HitArea(int x, int y)
+        {
+            if ((x >= cirX && x <= cirX + cirWidth) && (y >= cirY && y <= cirY + cirHeight))
             {
-                pen.Color = Color.Blue;
                 return true;
             }
             return false;
         }
 
-        public override void Idle()
+        public override void Move(int x, int y, int xMove, int yMove)
         {
-            pen.Color = Color.Black;
-        }
-
-        public override void Move(MouseEventArgs e, int x, int y)
-        {
-            Point point = e.Location;
-            cirX += x;
-            cirY += y;
+            cirX += xMove;
+            cirY += yMove;
         }
     }
 }

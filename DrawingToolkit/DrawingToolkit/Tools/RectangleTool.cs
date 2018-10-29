@@ -45,6 +45,7 @@ namespace DrawingToolkit.Tools
             if (e.Button == MouseButtons.Left)
             {
                 this.rectangle = new Rectangle(e.X, e.Y);
+                this.drawingCanvas.AddDrawingObject(this.rectangle);
             }
         }
 
@@ -52,20 +53,8 @@ namespace DrawingToolkit.Tools
         {
             if (e.Button == MouseButtons.Left)
             {
-                int height = 0;
-                int width = 0;
-
-                if (e.X > this.rectangle.rectX)
-                {
-                    width = e.X - this.rectangle.rectX;
-                    height = e.Y - this.rectangle.rectY;
-                }
-                else
-                {
-                    width = this.rectangle.rectX - e.X;
-                    height = this.rectangle.rectY - e.Y;
-                }
-
+                int width = e.X - this.rectangle.rectX;
+                int height = e.Y - this.rectangle.rectY;
 
                 if (width > 0 && height > 0)
                 {
@@ -79,12 +68,7 @@ namespace DrawingToolkit.Tools
         {
             if (e.Button == MouseButtons.Left)
             {
-                if (e.X <= this.rectangle.rectX)
-                {
-                    this.rectangle.rectX = e.X;
-                    this.rectangle.rectY = e.Y;
-                }
-                drawingCanvas.AddDrawingObject(this.rectangle);
+                this.rectangle.Selected();
             }
         }
     }

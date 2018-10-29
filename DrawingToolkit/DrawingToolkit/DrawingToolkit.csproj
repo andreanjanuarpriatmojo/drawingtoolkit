@@ -50,8 +50,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DrawingObject.cs" />
+    <Compile Include="DrawingState.cs" />
     <Compile Include="Shape\Circle.cs" />
     <Compile Include="Shape\Rectangle.cs" />
+    <Compile Include="State\EditState.cs" />
+    <Compile Include="State\IdleState.cs" />
+    <Compile Include="State\PreviewState.cs" />
     <Compile Include="Toolboxes.cs">
       <SubType>Component</SubType>
     </Compile>
