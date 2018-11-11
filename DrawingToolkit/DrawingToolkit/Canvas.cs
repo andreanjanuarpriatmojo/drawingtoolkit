@@ -21,6 +21,9 @@ namespace DrawingToolkit
             this.MouseDown += Canvas_MouseDown;
             this.MouseMove += Canvas_MouseMove;
             this.MouseUp += Canvas_MouseUp;
+
+            this.KeyDown += Canvas_KeyDown;
+            this.KeyUp += Canvas_KeyUp;
         }
 
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
@@ -56,6 +59,22 @@ namespace DrawingToolkit
             {
                 dobject.graphics = e.Graphics;
                 dobject.Draw();
+            }
+        }
+
+        private void Canvas_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (this.activeTool != null)
+            {
+                this.activeTool.ToolKeyDown(sender, e);
+            }
+        }
+
+        private void Canvas_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (this.activeTool != null)
+            {
+                this.activeTool.ToolKeyUp(sender, e);
             }
         }
 

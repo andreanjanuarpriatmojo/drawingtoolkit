@@ -71,5 +71,15 @@ namespace DrawingToolkit.Tools
                 this.rectangle.Selected();
             }
         }
+
+        public void ToolKeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        public void ToolKeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

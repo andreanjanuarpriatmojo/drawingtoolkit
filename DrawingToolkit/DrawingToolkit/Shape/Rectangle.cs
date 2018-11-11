@@ -60,10 +60,11 @@ namespace DrawingToolkit.Shape
             return false;
         }
 
-        public override void Move(int x, int y, int xMove, int yMove)
+        public override void Move(MouseEventArgs e, int x, int y)
         {
-            this.rectX += xMove;
-            this.rectY += yMove;
+            Point point = e.Location;
+            this.rectX += x;
+            this.rectY += y;
         }
     }
 }

@@ -66,5 +66,15 @@ namespace DrawingToolkit.Tools
                 line.Selected();
             }
         }
+
+        public void ToolKeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        public void ToolKeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

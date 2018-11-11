@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
+using System;
 
 namespace DrawingToolkit.Tools
 {
@@ -9,8 +10,7 @@ namespace DrawingToolkit.Tools
         private DrawingCanvas drawingCanvas;
         private DrawingObject currentObject;
 
-        private int x;
-        private int y;
+        Point point;
 
         public Cursor Cursor
         {
@@ -44,10 +44,9 @@ namespace DrawingToolkit.Tools
 
         public void ToolMouseDown(object sender, MouseEventArgs e)
         {
-            this.x = e.X;
-            this.y = e.Y;
+            point = e.Location;
 
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left && drawingCanvas != null)
             {
                 drawingCanvas.DeselectAll();
                 currentObject = drawingCanvas.SelectObject(e.X, e.Y);
@@ -56,19 +55,31 @@ namespace DrawingToolkit.Tools
 
         public void ToolMouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left && drawingCanvas != null)
             {
-                int xMove = e.X - x;
-                int yMove = e.Y - y;
-                x = e.X;
-                y = e.Y;
-                currentObject.Move(e.X, e.Y, xMove, yMove);
+                if (currentObject != null)
+                {
+                    int xMove = e.X - point.X;
+                    int yMove = e.Y - point.Y;
+                    point = e.Location;
+                    currentObject.Move(e, xMove, yMove);
+                }
             }
         }
 
         public void ToolMouseUp(object sender, MouseEventArgs e)
         {
             
+        }
+
+        public void ToolKeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        public void ToolKeyUp(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

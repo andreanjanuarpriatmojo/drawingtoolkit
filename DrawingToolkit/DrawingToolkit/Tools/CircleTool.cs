@@ -69,5 +69,15 @@ namespace DrawingToolkit.Tools
                 this.circle.Selected();
             }
         }
+
+        public void ToolKeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        public void ToolKeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

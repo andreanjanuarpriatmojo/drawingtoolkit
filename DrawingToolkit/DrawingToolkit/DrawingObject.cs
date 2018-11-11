@@ -27,7 +27,7 @@ namespace DrawingToolkit
         }
 
         public abstract bool HitArea(int x, int y);
-        public abstract void Move(int x, int y, int xMove, int yMove);
+        public abstract void Move(MouseEventArgs e, int x, int y);
 
         public abstract void DrawPreview();
         public abstract void DrawEdit();
