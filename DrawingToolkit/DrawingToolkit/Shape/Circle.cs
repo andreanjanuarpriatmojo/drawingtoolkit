@@ -1,11 +1,16 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System.Collections.Generic;
+
 
 namespace DrawingToolkit.Shape
 {
-    public class Circle : DrawingObject
+    public class Circle : DrawingObject, IObservable
     {
+
+        List<IObserver> observers = new List<IObserver>();
+
         public int cirX { get; set; }
         public int cirY { get; set; }
         public int cirWidth { get; set; }
@@ -35,6 +40,7 @@ namespace DrawingToolkit.Shape
             pen.Color = Color.Blue;
             pen.DashStyle = DashStyle.Solid;
             this.graphics.DrawEllipse(this.pen, cirX, cirY, cirWidth, cirHeight);
+            Notify();
         }
 
         public override void DrawIdle()
@@ -42,6 +48,7 @@ namespace DrawingToolkit.Shape
             pen.Color = Color.Black;
             pen.DashStyle = DashStyle.Solid;
             this.graphics.DrawEllipse(this.pen, cirX, cirY, cirWidth, cirHeight);
+            Notify();
         }
 
         public override void DrawPreview()
@@ -49,6 +56,7 @@ namespace DrawingToolkit.Shape
             pen.Color = Color.Blue;
             pen.DashStyle = DashStyle.DashDotDot;
             this.graphics.DrawEllipse(this.pen, cirX, cirY, cirWidth, cirHeight);
+            Notify();
         }
 
         public override bool HitArea(int x, int y)
@@ -65,6 +73,24 @@ namespace DrawingToolkit.Shape
             Point point = e.Location;
             cirX += x;
             cirY += y;
+        }
+
+        public void Attach(IObserver observer)
+        {
+            observers.Add(observer);
+        }
+
+        public void Detach(IObserver observer)
+        {
+            observers.Remove(observer);
+        }
+
+        public void Notify()
+        {
+            foreach (IObserver observer in observers)
+            {
+                observer.Update();
+            }
         }
     }
 }

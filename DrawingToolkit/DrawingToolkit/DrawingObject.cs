@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Windows.Forms;
 using DrawingToolkit.State;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace DrawingToolkit
 {
@@ -32,6 +34,15 @@ namespace DrawingToolkit
         public abstract void DrawPreview();
         public abstract void DrawEdit();
         public abstract void DrawIdle();
+
+        //public void Add(DrawingObject drawingObject)
+        //{
+        //    this.drawingGroup.Add(drawingObject);
+        //}
+        //public void Remove(DrawingObject drawingObject)
+        //{
+        //    this.drawingGroup.Remove(drawingObject);
+        //}
 
         public void ChangeState (DrawingState state)
         {

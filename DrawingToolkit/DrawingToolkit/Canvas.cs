@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Linq;
 
 namespace DrawingToolkit
 {
@@ -55,7 +56,7 @@ namespace DrawingToolkit
 
         private void Canvas_Paint(object sender, PaintEventArgs e)
         {
-            foreach (DrawingObject dobject in drawingObjects)
+            foreach (DrawingObject dobject in drawingObjects.Reverse<DrawingObject>())
             {
                 dobject.graphics = e.Graphics;
                 dobject.Draw();
@@ -101,7 +102,7 @@ namespace DrawingToolkit
 
         public DrawingObject GetObject(int x, int y)
         {
-            foreach (DrawingObject dobject in drawingObjects)
+            foreach (DrawingObject dobject in drawingObjects.Reverse<DrawingObject>())
             {
                 if (dobject.HitArea(x,y))
                 {
@@ -123,7 +124,7 @@ namespace DrawingToolkit
 
         public void DeselectAll()
         {
-            foreach (DrawingObject dobject in drawingObjects)
+            foreach (DrawingObject dobject in drawingObjects.Reverse<DrawingObject>())
             {
                 dobject.Deselected();
             }

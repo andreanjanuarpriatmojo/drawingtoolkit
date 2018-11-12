@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using System.Drawing;
 using System;
+using System.Linq;
+using DrawingToolkit.State;
 
 namespace DrawingToolkit.Tools
 {
@@ -9,7 +11,6 @@ namespace DrawingToolkit.Tools
     {
         private DrawingCanvas drawingCanvas;
         private DrawingObject currentObject;
-
         Point point;
 
         public Cursor Cursor
@@ -74,12 +75,13 @@ namespace DrawingToolkit.Tools
 
         public void ToolKeyDown(object sender, KeyEventArgs e)
         {
+            
 
         }
 
         public void ToolKeyUp(object sender, KeyEventArgs e)
         {
-
+            
         }
     }
 }
