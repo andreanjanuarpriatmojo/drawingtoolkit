@@ -6,11 +6,8 @@ using System.Collections.Generic;
 
 namespace DrawingToolkit.Shape
 {
-    public class Circle : DrawingObject, IObservable
+    public class Circle : DrawingObject
     {
-
-        List<IObserver> observers = new List<IObserver>();
-
         public int cirX { get; set; }
         public int cirY { get; set; }
         public int cirWidth { get; set; }
@@ -40,7 +37,6 @@ namespace DrawingToolkit.Shape
             pen.Color = Color.Blue;
             pen.DashStyle = DashStyle.Solid;
             this.graphics.DrawEllipse(this.pen, cirX, cirY, cirWidth, cirHeight);
-            Notify();
         }
 
         public override void DrawIdle()
@@ -48,7 +44,6 @@ namespace DrawingToolkit.Shape
             pen.Color = Color.Black;
             pen.DashStyle = DashStyle.Solid;
             this.graphics.DrawEllipse(this.pen, cirX, cirY, cirWidth, cirHeight);
-            Notify();
         }
 
         public override void DrawPreview()
@@ -56,7 +51,6 @@ namespace DrawingToolkit.Shape
             pen.Color = Color.Blue;
             pen.DashStyle = DashStyle.DashDotDot;
             this.graphics.DrawEllipse(this.pen, cirX, cirY, cirWidth, cirHeight);
-            Notify();
         }
 
         public override bool HitArea(int x, int y)
@@ -75,22 +69,13 @@ namespace DrawingToolkit.Shape
             cirY += y;
         }
 
-        public void Attach(IObserver observer)
+        public override Point GetCenterPoint()
         {
-            observers.Add(observer);
+            Point point = new Point();
+            point.X = cirX + (cirWidth / 2);
+            point.Y = cirY + (cirHeight / 2);
+            return point;
         }
 
-        public void Detach(IObserver observer)
-        {
-            observers.Remove(observer);
-        }
-
-        public void Notify()
-        {
-            foreach (IObserver observer in observers)
-            {
-                observer.Update();
-            }
-        }
     }
 }

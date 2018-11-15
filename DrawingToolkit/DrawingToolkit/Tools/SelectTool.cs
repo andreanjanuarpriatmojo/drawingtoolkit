@@ -12,6 +12,9 @@ namespace DrawingToolkit.Tools
         private DrawingCanvas drawingCanvas;
         private DrawingObject currentObject;
         Point point;
+        private Boolean multiSelect = false;
+
+        private List<DrawingObject> tempGroup = new List<DrawingObject>();
 
         public Cursor Cursor
         {
@@ -49,8 +52,24 @@ namespace DrawingToolkit.Tools
 
             if (e.Button == MouseButtons.Left && drawingCanvas != null)
             {
-                drawingCanvas.DeselectAll();
+                if (currentObject == null)
+                {
+                    drawingCanvas.DeselectAll();
+                    tempGroup.Clear();
+                }
+                else if (!multiSelect)
+                {
+                    currentObject.ChangeState(IdleState.GetInstance());
+                }
                 currentObject = drawingCanvas.SelectObject(e.X, e.Y);
+                if (currentObject != null)
+                {
+                    currentObject.ChangeState(EditState.GetInstance());
+                    if (multiSelect)
+                    {
+                        tempGroup.Add(currentObject);
+                    }
+                }
             }
         }
 
@@ -75,13 +94,32 @@ namespace DrawingToolkit.Tools
 
         public void ToolKeyDown(object sender, KeyEventArgs e)
         {
-            
-
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                multiSelect = true;
+            }
+            else if(e.KeyCode == Keys.G)
+            {
+                if (tempGroup.Count() > 1)
+                {
+                    DrawingGroup drawingGroup = new DrawingGroup();
+                    foreach (DrawingObject drawingObject in tempGroup)
+                    {
+                        drawingGroup.AddComposite(drawingObject);
+                    }
+                    drawingGroup.ChangeState(IdleState.GetInstance());
+                    this.drawingCanvas.AddDrawingObject(drawingGroup);
+                    tempGroup.Clear();
+                }
+            }
         }
 
         public void ToolKeyUp(object sender, KeyEventArgs e)
         {
-            
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                multiSelect = false;
+            }
         }
     }
 }

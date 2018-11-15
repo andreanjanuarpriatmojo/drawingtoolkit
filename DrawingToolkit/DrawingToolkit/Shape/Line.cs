@@ -67,5 +67,13 @@ namespace DrawingToolkit.Shape
             this.startPoint = new Point(this.startPoint.X + x, this.startPoint.Y + y);
             this.finishPoint = new Point(this.finishPoint.X + x, this.finishPoint.Y + y);
         }
+
+        public override Point GetCenterPoint()
+        {
+            Point point = new Point();
+            point.X = (startPoint.X + finishPoint.X) / 2;
+            point.Y = (startPoint.Y + finishPoint.Y) / 2;
+            return point;
+        }
     }
 }

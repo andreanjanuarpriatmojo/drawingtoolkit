@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using DrawingToolkit.Shape;
 
 namespace DrawingToolkit.Shape
 {
@@ -12,14 +13,14 @@ namespace DrawingToolkit.Shape
         public Point finishPoint;
         private Pen pen;
 
-        public Circle circleSource;
-        public Circle circleDestination;
+        public DrawingObject objectSource;
+        public DrawingObject objectDestination;
 
-        public Connector(Circle circleSource, Circle circleDestination)
+        public Connector(DrawingObject objectSource, DrawingObject objectDestination)
         {
             this.pen = new Pen(Color.Black);
-            this.circleSource = circleSource;
-            this.circleDestination = circleDestination;
+            this.objectSource = objectSource;
+            this.objectDestination = objectDestination;
             Update();
         }
 
@@ -64,14 +65,15 @@ namespace DrawingToolkit.Shape
             this.finishPoint = new Point(this.finishPoint.X + x, this.finishPoint.Y + y);
         }
 
-        //salah :(
+        public override Point GetCenterPoint()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update()
         {
-            this.startPoint.X = circleSource.cirX + (circleSource.cirWidth / 2) ;
-            this.startPoint.Y = circleSource.cirY + (circleSource.cirHeight / 2);
-
-            this.finishPoint.X = circleDestination.cirX + (circleDestination.cirWidth / 2);
-            this.finishPoint.Y = circleDestination.cirY + (circleDestination.cirHeight / 2);
+            this.startPoint = objectSource.GetCenterPoint();
+            this.finishPoint = objectDestination.GetCenterPoint();
         }
     }
 }

@@ -100,6 +100,12 @@ namespace DrawingToolkit
             this.drawingObjects.Add(drawingObject);
         }
 
+        public void AddDrawingObjectToFront(DrawingObject drawingObject)
+        {
+            this.drawingObjects.Insert(0, drawingObject);
+            System.Console.WriteLine(this.drawingObjects[0]);
+        }
+
         public DrawingObject GetObject(int x, int y)
         {
             foreach (DrawingObject dobject in drawingObjects.Reverse<DrawingObject>())

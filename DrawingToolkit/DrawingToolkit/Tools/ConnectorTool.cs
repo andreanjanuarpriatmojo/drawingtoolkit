@@ -2,6 +2,7 @@
 using System.Drawing;
 using DrawingToolkit.Shape;
 using DrawingToolkit.State;
+using System.Linq;
 
 namespace DrawingToolkit.Tools
 {
@@ -12,8 +13,8 @@ namespace DrawingToolkit.Tools
 
         Point point;
 
-        Circle circleSource;
-        Circle circleDestination;
+        public DrawingObject objectSource;
+        public DrawingObject objectDestination;
 
         public Cursor Cursor
         {
@@ -52,11 +53,8 @@ namespace DrawingToolkit.Tools
             if (e.Button == MouseButtons.Left && drawingCanvas != null)
             {
                 drawingCanvas.DeselectAll();
-               
-                if(drawingCanvas.SelectObject(e.X, e.Y).GetType() == typeof(Circle))
-                {
-                    circleSource = (Circle)drawingCanvas.SelectObject(e.X, e.Y);
-                }
+                objectSource = drawingCanvas.SelectObject(e.X, e.Y);
+
             }
         }
 
@@ -64,28 +62,27 @@ namespace DrawingToolkit.Tools
         {
             if (e.Button == MouseButtons.Left && drawingCanvas != null)
             {
-                if (circleSource != null)
+                
+                drawingCanvas.DeselectAll();
+              
+                if (objectSource != null)
                 {
-                    drawingCanvas.DeselectAll();
+                        objectDestination = drawingCanvas.SelectObject(e.X, e.Y);
 
-                    if (drawingCanvas.SelectObject(e.X, e.Y).GetType() == typeof(Circle))
-                    {
-                        circleDestination = (Circle)drawingCanvas.SelectObject(e.X, e.Y);
+                        Connector connector = new Connector(objectSource, objectDestination);
+                        objectSource.Attach(connector);
+                        objectDestination.Attach(connector);
 
-                        Connector connector = new Connector(circleSource, circleDestination);
-                        circleSource.Attach(connector);
-                        circleDestination.Attach(connector);
-
-                        drawingCanvas.AddDrawingObject(connector);
+                        drawingCanvas.AddDrawingObjectToFront(connector);
                         connector.ChangeState(IdleState.GetInstance());
-                    }
+                    
                 }
             }
         }
 
         public void ToolMouseMove(object sender, MouseEventArgs e)
         {
-
+            
         }
 
         public void ToolKeyDown(object sender, KeyEventArgs e)

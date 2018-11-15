@@ -67,5 +67,13 @@ namespace DrawingToolkit.Shape
             this.rectX += x;
             this.rectY += y;
         }
+
+        public override Point GetCenterPoint()
+        {
+            Point point = new Point();
+            point.X = rectX + (rectWidth / 2);
+            point.Y = rectY + (rectHeight / 2);
+            return point;
+        }
     }
 }
